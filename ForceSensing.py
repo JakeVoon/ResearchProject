@@ -1,6 +1,10 @@
 import json
+import numpy as np
 
-file_names = []
+base = "exp1-ground_truth"
+file_name = ["30","50","70","90","110"]
+file_name = ["bare_bare_" + s for s in file_name]
+json_file_names = np.arange(8)
 
 path_to_json = 'exp1-ground_truth/bare_bare_30'
 
