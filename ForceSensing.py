@@ -1,16 +1,3 @@
-import json
-import numpy as np
-
-base = "exp1-ground_truth"
-file_name = ["30","50","70","90","110"]
-file_name = ["bare_bare_" + s for s in file_name]
-json_file_names = np.arange(8)
-
-path_to_json = 'exp1-ground_truth/bare_bare_30'
-
-with open("exp1-ground_truth/bare_bare_30/bare_bare_30_iter1.json", "r") as json_file:
-    bb30 = json.load(json_file)
-
 """
 The json file consists of a dict object with two keys:
 1. 'experiment_parameters' : dictionary
@@ -38,7 +25,22 @@ curvatures : list, float
 positions_2d : nested list, float
 positions_3d : nested list, float
 """
-exp_params = bb30["experiment_parameters"]
 
-data = bb30["data"]
+import json
+import numpy as np
+
+base = "exp1-ground_truth"
+folder = ["30","50","70","90","110"]
+folder = ["bare_bare_" + s for s in folder]
+json_file_names = np.arange(8)
+
+path_to_json = 'exp1-ground_truth/bare_bare_30'
+
+with open("exp1-ground_truth/bare_bare_30/bare_bare_30_iter1.json", "r") as json_file:
+    barebare = json.load(json_file)
+
+
+exp_params = barebare["experiment_parameters"]
+
+data = barebare["data"]
 
