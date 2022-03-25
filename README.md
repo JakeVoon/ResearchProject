@@ -1,5 +1,5 @@
-# ResearchProject
+# TODO:
+1. Program force sensing algorithm
 
-1. Continue with force sensing
-2. FBGS interrogator already has built in curvature conversion, included in json file (might need to use curvature data for force calculation)
-3. 28th Feb demonstration in CBH with Ela and Nilesh present
+# Notes:
+I'm currently building the algorithm in Jupyter Notebook so that I may write notes along with the code, but once its completed and validated, the algorithm will be moved into a Python file.
