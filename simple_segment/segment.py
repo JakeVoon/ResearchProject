@@ -1,3 +1,18 @@
+from matplotlib.pylab import gca, plot, title, xlabel, ylabel, xlim
+from matplotlib.lines import Line2D
+
+def draw_plot(data,plot_title):
+    plot(range(len(data)),data,alpha=0.8,color='red')
+    title(plot_title)
+    xlabel("Samples")
+    ylabel("Signal")
+
+def draw_segments(segments):
+    ax = gca()
+    for segment in segments:
+        line = Line2D((segment[0],segment[2]),(segment[1],segment[3]))
+        ax.add_line(line)
+
 
 def slidingwindowsegment(sequence, create_segment, compute_error, max_error, seq_range=None):
     """
@@ -111,3 +126,4 @@ def topdownsegment(sequence, create_segment, compute_error, max_error, seq_range
         rightsegs = topdownsegment(sequence, create_segment, compute_error, max_error, (bestidx,seq_range[1]))
     
     return leftsegs + rightsegs
+

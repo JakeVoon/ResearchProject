@@ -33,8 +33,6 @@ data = [float(x.split("\t")[2].strip()) for x in file_lines[100:320]]
 
 # data = data[0]['curvatures']
 
-
-
 max_error = 0.005
 
 #sliding window with regression
