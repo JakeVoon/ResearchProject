@@ -1,6 +1,6 @@
 # TODO:
 1. Program force sensing algorithm
-   [X] Create fake data for validating segmenting algorithm 
+   [X] Create fake data for validating segmenting algorithm \\
    [ ] Find algorithms for detecting break point locations
 
 # Notes:
