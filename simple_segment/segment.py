@@ -2,15 +2,15 @@ from matplotlib.pylab import gca, plot, title, xlabel, ylabel, xlim
 from matplotlib.lines import Line2D
 
 def draw_plot(data,plot_title):
-    plot(range(len(data)),data,alpha=0.8,color='red')
+    plot(range(len(data)),data,alpha=0.8,color='blue')
     title(plot_title)
-    xlabel("Samples")
-    ylabel("Signal")
+    xlabel("Arc length")
+    ylabel("Curvature")
 
 def draw_segments(segments):
     ax = gca()
     for segment in segments:
-        line = Line2D((segment[0],segment[2]),(segment[1],segment[3]))
+        line = Line2D((segment[0],segment[2]),(segment[1],segment[3]),color='red')
         ax.add_line(line)
 
 
