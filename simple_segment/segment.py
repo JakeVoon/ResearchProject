@@ -42,7 +42,7 @@ def slidingwindowsegment(sequence, create_segment, compute_error, max_error, seq
             result_segment = test_segment
         else:
             break
-        
+
     if end == seq_range[1]:
         return [result_segment]
     else:
@@ -81,6 +81,11 @@ def bottomupsegment(sequence, create_segment, compute_error, max_error):
 
         del mergesegments[idx]
         del mergecosts[idx]
+
+        if len(mergecosts) == 0:
+            print("Error: Data too flat for bottom up segmentation! Ended up with no segments.")
+            segments = [[0,0,len(sequence),0]]
+            break
 
     return segments
     
