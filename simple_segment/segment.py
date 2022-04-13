@@ -2,7 +2,7 @@ from matplotlib.pylab import gca, plot, title, xlabel, ylabel, xlim
 from matplotlib.lines import Line2D
 
 def draw_plot(data,plot_title):
-    plot(range(len(data)),data,alpha=0.8,color='blue')
+    plot(range(11,19),data,alpha=0.8,color='blue')
     title(plot_title)
     xlabel("Arc length")
     ylabel("Curvature")
@@ -10,7 +10,7 @@ def draw_plot(data,plot_title):
 def draw_segments(segments):
     ax = gca()
     for segment in segments:
-        line = Line2D((segment[0],segment[2]),(segment[1],segment[3]),color='red')
+        line = Line2D((segment[0]+11,segment[2]+11),(segment[1],segment[3]),color='red')
         ax.add_line(line)
 
 
@@ -42,7 +42,7 @@ def slidingwindowsegment(sequence, create_segment, compute_error, max_error, seq
             result_segment = test_segment
         else:
             break
-
+        
     if end == seq_range[1]:
         return [result_segment]
     else:
