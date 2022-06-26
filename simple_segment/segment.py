@@ -2,7 +2,7 @@ from matplotlib.pylab import gca, plot, title, xlabel, ylabel, xlim
 from matplotlib.lines import Line2D
 
 def draw_plot(data,plot_title):
-    plot(range(11,19),data,alpha=0.8,color='blue')
+    plot(range(0,8),data,alpha=0.8,color='blue')
     title(plot_title)
     xlabel("Arc length")
     ylabel("Curvature")
@@ -10,7 +10,7 @@ def draw_plot(data,plot_title):
 def draw_segments(segments):
     ax = gca()
     for segment in segments:
-        line = Line2D((segment[0]+11,segment[2]+11),(segment[1],segment[3]),color='red')
+        line = Line2D((segment[0],segment[2]),(segment[1],segment[3]),color='red')
         ax.add_line(line)
 
 
@@ -83,7 +83,7 @@ def bottomupsegment(sequence, create_segment, compute_error, max_error):
         del mergecosts[idx]
 
         if len(mergecosts) == 0:
-            print("Error: Data too flat for bottom up segmentation! Ended up with no segments.")
+            print("Error: Data too flat for bottom up segmentation! Ended up with no segments, plotted horizontal line instead.")
             segments = [[0,0,len(sequence),0]]
             break
 
