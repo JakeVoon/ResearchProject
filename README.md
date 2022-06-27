@@ -1,7 +1,13 @@
-# TODO:
-1. Program force sensing algorithm
-   - [X] Create fake data for validating segmenting algorithm 
-   - [ ] Find algorithms for detecting break point locations
+# Issues: 
+Equation (2) 'atan2' requires two inputs, but there's only one? The paper specifically specified using 'atan2'
+In the assumptions, 
+Currently unkown variables:
+ - radius/cross-sectional area of the MCF
+ - Young's and Shear moduli of the MCF
+ - Number of cores used in the MCF in the lab
 
-# Notes:
-I'm currently building the algorithm in Jupyter Notebook so that I may write notes along with the code, but once its completed and validated, the algorithm will be moved into a Python file.
+Next steps:
+1. Solving IVPs by hand
+2. Implementing in code (assume external point force location is known for now)
+3. Including segmentation algorithm to find breakpoints (location of external point forces)
+3. Noise reduction algorithms
