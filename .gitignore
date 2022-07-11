@@ -1,7 +1,6 @@
 *.pyc
 simple_segment/__pycache__/__init__.cpython-37.pyc
 simple_segment/__pycache__/segment.cpython-37.pyc
-Cosserat.pdf
 FBG_Based_Estimation_of_External_Forces_Along_Flex .pdf
 Jake - Poster Script.docx
 Jake - Poster.pptx
@@ -10,3 +9,6 @@ Script Notes.txt
 TODO.txt
 Voon_1807067_Poster.pptx
 Voon_1807067_Poster.pdf
+Segmentation Data.png
+Cosserat/interpolated.png
+Cosserat/non-interpolated.png
