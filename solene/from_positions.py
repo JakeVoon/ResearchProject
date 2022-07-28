@@ -9,12 +9,12 @@ import numpy as np
 file = 'data/max_pulling.json'
 
 
-def load_experiment(json_file):
+def load_experiment(json_file, idx):
     try:
         # Opening JSON file
         with open(json_file) as json_file:
 
-            experiment_json = json.load(json_file)['data'][15]
+            experiment_json = json.load(json_file)['data'][idx]
             curvature = experiment_json['curvatures']
             positions_2d = np.array(experiment_json['positions_2d'])
             positions_3d = np.array(experiment_json['positions_3d'])
@@ -24,7 +24,7 @@ def load_experiment(json_file):
     return experiment_json, curvature, positions_2d, positions_3d
 
 
-def get_3_points_from_idx(idx_first_point):
+def get_3_points_from_idx(positions_2d, idx_first_point):
     p1, p2, p3 = np.array(positions_2d[idx_first_point:idx_first_point + 3])
     return p1, p2, p3
 
@@ -45,9 +45,9 @@ def get_curvature_from_3_points(first_pos_id: int = 12):
     return curvature
 
 
-def get_theta_from_3_points(first_pos_id: int = 12):
+def get_theta_from_3_points(positions_2d, first_pos_id):
     """ Compute tetra from the formula found """
-    p1, p2, p3 = get_3_points_from_idx(first_pos_id)
+    p1, p2, p3 = get_3_points_from_idx(positions_2d, first_pos_id)
 
     p1x, p1y = p1
     p2x, p2y = p2
@@ -176,14 +176,23 @@ def find_center(normal_a, normal_b, x, y, idx):
     plt.scatter(s2_x, s2_y)
 
 
+def main(idx):
+    experiment_json, curvature, positions_2d, positions_3d = load_experiment(file, idx)
+
+    thetas_from_pos = np.zeros(len(positions_2d) - 2)
+    for i in range(len(positions_2d) - 2):
+        thetas_from_pos[i] = get_theta_from_3_points(positions_2d, i)
+    return thetas_from_pos
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     experiment_json, curvature, positions_2d, positions_3d = load_experiment(file)
-    # # k = generate_curvature_array(positions_2d)
-    t = get_theta_from_3_points(16)
+    t = get_theta_from_3_points(positions_2d, 0)
     print(t, np.degrees(t))
     # display_everything(positions_2d)
     # derivative = compute_derivative(positions_2d)
     # show_affine()
+    # # k = generate_curvature_array(positions_2d)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

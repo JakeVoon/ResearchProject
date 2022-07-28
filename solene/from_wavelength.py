@@ -15,7 +15,7 @@ ANGLE_TO_NX = np.radians([0, 120, 240])
 data_idx = 15
 
 
-def load_experiment(json_file):
+def load_experiment(json_file, idx):
     try:
         # Opening JSON file
         with open(json_file) as json_file:
@@ -93,6 +93,16 @@ def calculate_thetas(curvature_vector):
         thetas_array[i] = math.atan2(curvature_vector[i, 0], curvature_vector[i, 1])
 
     return thetas_array
+
+
+def main(idx):
+    ref, wav_data = load_experiment(file, idx)
+    wav_diff = get_wav_difference(ref, wav_data)
+    wav_diff_temp_comp = compensate_temperature(wav_diff)
+    strains_mat = calculate_strain_outer_cores(wav_diff_temp_comp)
+    curvature_vector = calculate_curvature_vector(strains_mat)
+    thetas = calculate_thetas(curvature_vector)
+    return thetas
 
 
 if __name__ == '__main__':
