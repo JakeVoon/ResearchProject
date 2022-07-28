@@ -1,4 +1,6 @@
 import json
+import math
+
 import numpy as np
 
 file = 'data/max_pulling.json'
@@ -44,7 +46,8 @@ def compensate_temperature(wav_diff):
 def calculate_strain_outer_cores(wav_diff_temp_comp):
     ki_vector = np.zeros((NB_CORES, NB_GRATINGS_PER_CORE)) + 0.045  # nm/m-1
     strain_matrix = wav_diff_temp_comp * CORE_TO_CENTER_DIST_UM / ki_vector
-    return strain_matrix.pop(CENTRAL_CORE)
+    strain_matrix = np.delete(strain_matrix, 1, 0)
+    return strain_matrix
 
 
 def calculate_curvature_vector(strain_matrix):
@@ -84,11 +87,18 @@ def calculate_phis(radii_of_curvature):
     return phi_vect
 
 
+def calculate_thetas(curvature_vector):
+    thetas_array = np.zeros(len(curvature_vector))
+    for i in range(len(curvature_vector)):
+        thetas_array[i] = math.atan2(curvature_vector[i, 0], curvature_vector[i, 1])
+
+    return thetas_array
+
+
 if __name__ == '__main__':
     ref, wav_data = load_experiment(file)
     wav_diff = get_wav_difference(ref, wav_data)
     wav_diff_temp_comp = compensate_temperature(wav_diff)
-    strains_matrix = calculate_strain_outer_cores(wav_diff_temp_comp)
-    curvature_vector = calculate_curvature_vector(strains_matrix)
-    radii_of_curvature = calculate_radii_of_curvature(curvature_vector)
-    phis = calculate_phis(radii_of_curvature)
+    strains_mat = calculate_strain_outer_cores(wav_diff_temp_comp)
+    curvature_vector = calculate_curvature_vector(strains_mat)
+    thetas = calculate_thetas(curvature_vector)
